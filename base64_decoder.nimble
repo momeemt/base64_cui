@@ -2,10 +2,10 @@
 
 version       = "0.1.0"
 author        = "Momeemt"
-description   = "base64 decoder"
+description   = "base64 cui"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["base64_decoder"]
+bin           = @["base64_cui"]
 
 
 
