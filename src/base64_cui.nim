@@ -6,6 +6,7 @@ type base64_condition = enum
   decode
   debug_encode
   debug_decode
+  tweet
   wait_encode_count
 
 when isMainModule:
@@ -34,6 +35,12 @@ when isMainModule:
         echo "encode: ", stock_str
         stock_str = ""
         condition = none
+      elif condition == tweet:
+        var user_input: string = key
+        while user_input.len <= 280:
+          user_input = encode(user_input)
+        echo "---------------------------------"
+        echo "encode for twitter: ", decode(user_input) 
     of cmdLongOption, cmdShortOption:
       if key == "encode" or key == "e":
         condition = encode
@@ -44,8 +51,11 @@ when isMainModule:
       elif key == "debug_decode" or key == "debug_decode":
         condition = debug_decode
       elif key == "help" or key == "h":
-        echo "[encode] b64dec -e [string] [count]"
-        echo "[decode] b64dec -d [string]"
+        echo "[encode] base64_cui -e [string] [count]"
+        echo "[encode for twitter] base64_cui -t [string]"
+        echo "[decode] base64_cui -d [string]"
+      elif key == "tweet" or key == "t":
+        condition = tweet
     of cmdEnd:
       discard
   if condition == wait_encode_count:
